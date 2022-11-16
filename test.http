@@ -1,0 +1,32 @@
+###
+GET http://localhost:8080/shopping-list/?customerLastName=Alekseev
+
+###
+GET http://localhost:8080/shopping-list/customers
+
+###
+
+GET http://localhost:8080/shopping-list/goods
+
+###
+
+PUT http://localhost:8080/shopping-list/new
+Accept: application/json
+Content-Type: application/json
+
+{
+  "productId": "528bbd49-a04b-491e-a403-12420c8c2005",
+  "customerId": "a2868285-2250-4b12-8dcc-62983ac746f4",
+  "count": 5
+}
+
+###
+
+DELETE http://localhost:8080/shopping-list/delete
+Accept: application/json
+Content-Type: application/json
+
+{
+  "productId": "528bbd49-a04b-491e-a403-12420c8c2005",
+  "customerId": "a2868285-2250-4b12-8dcc-62983ac746f4"
+}
