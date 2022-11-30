@@ -3,40 +3,56 @@ package ru.zzaharovs.shoppinglist.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.zzaharovs.shoppinglist.entity.CustomerEntity;
-import ru.zzaharovs.shoppinglist.entity.GoodEntity;
-import ru.zzaharovs.shoppinglist.entity.ProductEntity;
-import ru.zzaharovs.shoppinglist.model.OrderModel;
-import ru.zzaharovs.shoppinglist.repo.CustomerRepo;
-import ru.zzaharovs.shoppinglist.repo.GoodsRepo;
-import ru.zzaharovs.shoppinglist.repo.ShoppingListRepo;
+import ru.zzaharovs.shoppinglist.dao.repo.CustomerRepository;
+import ru.zzaharovs.shoppinglist.dao.repo.GoodsRepository;
+import ru.zzaharovs.shoppinglist.dao.repo.ShoppingListRepository;
+import ru.zzaharovs.shoppinglist.util.CustomerMapper;
+import ru.zzaharovs.shoppinglist.web.dto.CustomerDto;
+import ru.zzaharovs.shoppinglist.web.dto.GoodDto;
+import ru.zzaharovs.shoppinglist.web.dto.OrderDto;
+import ru.zzaharovs.shoppinglist.web.dto.ProductDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ShoppingListService {
 
-    private final GoodsRepo goodsRepo;
-    private final ShoppingListRepo shoppingListRepo;
-    private final CustomerRepo customerRepo;
+    private final GoodsRepository goodsRepo;
+    private final ShoppingListRepository shoppingListRepo;
+    private final CustomerRepository customerRepo;
+    private final CustomerMapper mapper;
 
-    public List<OrderModel> getProducts(String customerLastName) {
+    public List<OrderDto> getProducts(String customerLastName) {
         return shoppingListRepo.getShoppingListByLastname(customerLastName);
     }
-    public List<CustomerEntity> getCustomers() {
-        return customerRepo.getCustomers();
+
+    public List<CustomerDto> getCustomers() {
+        return customerRepo.getCustomers().stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    public List<GoodEntity> getProducts() {
-        return goodsRepo.getGood();
+    public List<GoodDto> getProducts() {
+        return goodsRepo.getGoods().stream()
+                .map(x -> GoodDto.builder()
+                        .id(x.getId())
+                        .productName(x.getProductName())
+                        .amount(x.getAmount())
+                        .measure(x.getMeasure())
+                        .quantityInOne(x.getQuantityInOne())
+                        .currency(x.getCurrency())
+                        .build()
+                )
+                .collect(Collectors.toList());
     }
 
-    public void setProduct(ProductEntity model) {
+    public void setProduct(ProductDto model) {
         shoppingListRepo.insertRow(model.getProductId(), model.getCustomerId(), model.getCount());
     }
 
-    public void deleteProduct(ProductEntity model) {
+    public void deleteProduct(ProductDto model) {
         shoppingListRepo.deleteRow(model.getProductId(), model.getCustomerId());
     }
 

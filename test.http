@@ -15,8 +15,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "productId": "528bbd49-a04b-491e-a403-12420c8c2005",
-  "customerId": "a2868285-2250-4b12-8dcc-62983ac746f4",
+  "productId": "26730108-99d1-4d3c-81f7-c7e8130272c6",
+  "customerId": "d0dec015-cb19-4754-b92b-19bd695ff16e",
   "count": 5
 }
 
@@ -27,6 +27,6 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "productId": "528bbd49-a04b-491e-a403-12420c8c2005",
-  "customerId": "a2868285-2250-4b12-8dcc-62983ac746f4"
+  "productId": "26730108-99d1-4d3c-81f7-c7e8130272c6",
+  "customerId": "d0dec015-cb19-4754-b92b-19bd695ff16e"
 }

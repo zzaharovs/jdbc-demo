@@ -1,11 +1,12 @@
-package ru.zzaharovs.shoppinglist.entity;
+package ru.zzaharovs.shoppinglist.web.dto;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class ProductEntity {
+public class ProductDto {
+
 
     private UUID customerId;
     private UUID productId;

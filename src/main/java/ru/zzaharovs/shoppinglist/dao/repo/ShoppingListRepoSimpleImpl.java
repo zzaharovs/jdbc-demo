@@ -1,19 +1,18 @@
-package ru.zzaharovs.shoppinglist.repo;
+package ru.zzaharovs.shoppinglist.dao.repo;
 
 
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
-import ru.zzaharovs.shoppinglist.model.OrderModel;
 import ru.zzaharovs.shoppinglist.util.ScriptReader;
+import ru.zzaharovs.shoppinglist.web.dto.OrderDto;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@Repository
+//@Repository
 @AllArgsConstructor
-public class ShoppingListRepo {
+public class ShoppingListRepoSimpleImpl implements ShoppingListRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -31,12 +30,12 @@ public class ShoppingListRepo {
                 Map.of("customerId", customerId, "goodId", goodId));
     }
 
-    public List<OrderModel> getShoppingListByLastname(String lastName) {
+    public List<OrderDto> getShoppingListByLastname(String lastName) {
         String request = ScriptReader.read("findByName.sql");
         return namedParameterJdbcTemplate.query(
                 request,
                 Map.of("lastname", lastName),
-                (rs, rowNum) -> OrderModel.builder()
+                (rs, rowNum) -> OrderDto.builder()
                         .fullName(rs.getString("fullname"))
                         .productName(rs.getString("product_name"))
                         .measure(rs.getString("measure"))

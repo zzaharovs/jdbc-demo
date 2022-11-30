@@ -1,16 +1,15 @@
-package ru.zzaharovs.shoppinglist.repo;
+package ru.zzaharovs.shoppinglist.dao.repo;
 
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Repository;
-import ru.zzaharovs.shoppinglist.entity.CustomerEntity;
+import ru.zzaharovs.shoppinglist.dao.entity.CustomerEntity;
 
 import java.util.List;
 import java.util.UUID;
 
-@Repository
+//@Repository
 @AllArgsConstructor
-public class CustomerRepo {
+public class CustomerRepoSimpleImpl implements CustomerRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

@@ -1,4 +1,4 @@
-package ru.zzaharovs.shoppinglist.entity;
+package ru.zzaharovs.shoppinglist.web.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class GoodEntity {
+public class GoodDto {
 
     private UUID id;
     private String productName;
