@@ -20,7 +20,7 @@ public class GoodEntity {
     @Id
     private UUID id;
     @Column(name = "product_name", nullable = false, unique = true)
-    private String productName;
+    private String name;
     @Column(name = "quantity_in_one", nullable = false)
     private Integer quantityInOne;
     @Column(name = "measure", nullable = false)

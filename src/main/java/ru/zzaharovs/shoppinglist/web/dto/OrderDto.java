@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class OrderDto {
+public class OrderDto{
 
     @ApiModelProperty("Полное имя пользователя")
     private String fullName;

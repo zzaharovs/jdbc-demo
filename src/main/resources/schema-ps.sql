@@ -7,7 +7,7 @@ create table if not exists train.customers
     lastname      varchar(50) not null,
     age          int check ( age > -1 ),
     registration_date         date         not null default now()
-);
+    );
 
 
 create table if not exists train.goods
@@ -19,7 +19,7 @@ create table if not exists train.goods
     amount       int check ( amount > -1 ),
     currency     varchar(100) not null
 
-);
+    );
 
 create table if not exists train.customer_goods
 (
@@ -27,4 +27,4 @@ create table if not exists train.customer_goods
     customer_id  uuid references train.customers (id) not null,
     good_id      uuid references train.goods (id) not null,
     count       int check ( count > -1 )
-);
+    );

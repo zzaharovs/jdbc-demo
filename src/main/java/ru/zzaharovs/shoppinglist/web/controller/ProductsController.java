@@ -4,13 +4,12 @@ package ru.zzaharovs.shoppinglist.web.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.zzaharovs.shoppinglist.service.ShoppingListService;
-import ru.zzaharovs.shoppinglist.web.dto.CustomerDto;
-import ru.zzaharovs.shoppinglist.web.dto.GoodDto;
-import ru.zzaharovs.shoppinglist.web.dto.OrderDto;
-import ru.zzaharovs.shoppinglist.web.dto.ProductDto;
+import ru.zzaharovs.shoppinglist.service.model.OrderModel;
+import ru.zzaharovs.shoppinglist.web.dto.*;
 
 import java.util.List;
 
@@ -28,10 +27,21 @@ public class ProductsController {
         return shoppingListService.getProducts(customerLastName);
     }
 
+    @GetMapping("/short")
+    public Page<OrderModel> getProductsShort(String customerLastName, Integer pageNumber, Integer pageSize) {
+        return shoppingListService.getProductsShort(customerLastName, pageNumber, pageSize);
+    }
+
     @GetMapping("/customers")
     @ApiOperation(value = "Получение списка покупателей", produces = "application/json")
     public List<CustomerDto> getCustomers() {
         return shoppingListService.getCustomers();
+    }
+
+    @GetMapping("/customers/count")
+    @ApiOperation(value = "Получение количества покупателей", produces = "application/json")
+    public Integer getCustomersCount() {
+        return shoppingListService.getCountOfCustomers();
     }
 
     @GetMapping("/goods")

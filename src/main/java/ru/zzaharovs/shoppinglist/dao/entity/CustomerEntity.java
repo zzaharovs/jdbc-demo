@@ -22,7 +22,7 @@ public class CustomerEntity {
     @Id
     private UUID id;
     @Column(name = "firstname")
-    private String firstName; //first_name
+    private String firstName;
     @Column(name = "lastname")
     private String lastName;
     @Column(name = "age")

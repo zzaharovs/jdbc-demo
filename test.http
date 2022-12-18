@@ -2,7 +2,13 @@
 GET http://localhost:8080/shopping-list/?customerLastName=Alekseev
 
 ###
+GET http://localhost:8080/shopping-list/short?customerLastName=Alekseev&pageSize=2&pageNumber=1
+
+###
 GET http://localhost:8080/shopping-list/customers
+
+###
+GET http://localhost:8080/shopping-list/customers/count
 
 ###
 
@@ -15,9 +21,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "productId": "26730108-99d1-4d3c-81f7-c7e8130272c6",
+  "productId": "f025ca50-045d-418d-91c0-ae5a3ee8662e",
   "customerId": "d0dec015-cb19-4754-b92b-19bd695ff16e",
-  "count": 5
+  "count": 1
 }
 
 ###
